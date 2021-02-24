@@ -1,0 +1,26 @@
+```plantuml
+@startuml
+skinparam componentStyle rectangle
+
+package "WMQ" {
+  [DEV.QUEUE.1]
+  [DEV.QUEUE.2]
+}
+
+node "INTERLOK" {
+  [Transacted]
+  [DEV.QUEUE.1]
+}
+
+node "INTERLOK" {
+  [Non-Transacted]
+  [DEV.QUEUE.1]
+}
+
+
+[DEV.QUEUE.1] --> [Transacted]
+[Transacted] --> [DEV.QUEUE.2]
+[DEV.QUEUE.1] --> [Non-Transacted]
+[Non-Transacted] --> [DEV.QUEUE.2]
+@enduml
+```

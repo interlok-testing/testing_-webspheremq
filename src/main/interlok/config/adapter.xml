@@ -1,0 +1,198 @@
+<adapter>
+  <unique-id>wmq-testing</unique-id>
+  <start-up-event-imp>com.adaptris.core.event.StandardAdapterStartUpEvent</start-up-event-imp>
+  <heartbeat-event-imp>com.adaptris.core.HeartbeatEvent</heartbeat-event-imp>
+  <shared-components>
+    <connections>
+      <jms-connection>
+        <unique-id>wmq</unique-id>
+        <user-name>app</user-name>
+        <password>passw0rd</password>
+        <vendor-implementation class="basic-mq-series-implementation">
+          <ccsid>-1</ccsid>
+          <transport-type>MQJMS_TP_CLIENT_MQ_TCPIP</transport-type>
+          <queue-manager>DevQueueManager</queue-manager>
+          <channel>DEV.APP.SVRCONN</channel>
+          <broker-host>localhost</broker-host>
+          <broker-port>1414</broker-port>
+        </vendor-implementation>
+      </jms-connection>
+    </connections>
+    <services/>
+  </shared-components>
+  <event-handler class="default-event-handler">
+    <unique-id>DefaultEventHandler</unique-id>
+    <connection class="null-connection">
+      <unique-id>amazing-mestorf</unique-id>
+    </connection>
+    <producer class="null-message-producer">
+      <unique-id>sleepy-lovelace</unique-id>
+    </producer>
+  </event-handler>
+  <heartbeat-event-interval>
+    <unit>SECONDS</unit>
+    <interval>30</interval>
+  </heartbeat-event-interval>
+  <message-error-handler class="null-processing-exception-handler">
+    <unique-id>sleepy-brahmagupta</unique-id>
+  </message-error-handler>
+  <failed-message-retrier class="no-retries">
+    <unique-id>berserk-knuth</unique-id>
+  </failed-message-retrier>
+  <channel-list>
+    <channel>
+      <consume-connection class="shared-connection">
+        <lookup-name>wmq</lookup-name>
+      </consume-connection>
+      <produce-connection class="shared-connection">
+        <lookup-name>wmq</lookup-name>
+      </produce-connection>
+      <workflow-list>
+        <jms-transacted-workflow>
+          <consumer class="jms-consumer">
+            <unique-id>jovial-brahmagupta</unique-id>
+            <acknowledge-mode>CLIENT_ACKNOWLEDGE</acknowledge-mode>
+            <message-translator class="auto-convert-message-translator">
+              <jms-output-type>Text</jms-output-type>
+            </message-translator>
+            <endpoint>jms:queue:DEV.QUEUE.1</endpoint>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>zen-knuth</unique-id>
+            <services/>
+          </service-collection>
+          <producer class="jms-producer">
+            <unique-id>sad-jennings</unique-id>
+            <acknowledge-mode>CLIENT_ACKNOWLEDGE</acknowledge-mode>
+            <message-translator class="text-message-translator">
+              <metadata-filter class="remove-all-metadata-filter"/>
+            </message-translator>
+            <delivery-mode>PERSISTENT</delivery-mode>
+            <session-factory class="jms-default-producer-session"/>
+            <endpoint>jms:queue:DEV.QUEUE.2</endpoint>
+          </producer>
+          <produce-exception-handler class="null-produce-exception-handler"/>
+          <unique-id>solaceWorkflow</unique-id>
+          <message-metrics-interceptor>
+            <unique-id>awesome-lamarr-MessageMetrics</unique-id>
+            <timeslice-duration>
+              <unit>SECONDS</unit>
+              <interval>1</interval>
+            </timeslice-duration>
+            <timeslice-history-count>100</timeslice-history-count>
+          </message-metrics-interceptor>
+          <in-flight-workflow-interceptor>
+            <unique-id>awesome-lamarr-InFlight</unique-id>
+          </in-flight-workflow-interceptor>
+        </jms-transacted-workflow>
+      </workflow-list>
+      <unique-id>Transacted</unique-id>
+      <auto-start>true</auto-start>
+    </channel>
+    <channel>
+      <consume-connection class="shared-connection">
+        <lookup-name>wmq</lookup-name>
+      </consume-connection>
+      <produce-connection class="shared-connection">
+        <lookup-name>wmq</lookup-name>
+      </produce-connection>
+      <workflow-list>
+        <standard-workflow>
+          <consumer class="jms-consumer">
+            <unique-id>nauseous-volhard</unique-id>
+            <acknowledge-mode>CLIENT_ACKNOWLEDGE</acknowledge-mode>
+            <message-translator class="auto-convert-message-translator">
+              <jms-output-type>Text</jms-output-type>
+            </message-translator>
+            <endpoint>jms:queue:DEV.QUEUE.1</endpoint>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>high-kirch</unique-id>
+            <services/>
+          </service-collection>
+          <producer class="jms-producer">
+            <unique-id>mad-williams</unique-id>
+            <acknowledge-mode>CLIENT_ACKNOWLEDGE</acknowledge-mode>
+            <message-translator class="text-message-translator">
+              <metadata-filter class="remove-all-metadata-filter"/>
+            </message-translator>
+            <delivery-mode>PERSISTENT</delivery-mode>
+            <session-factory class="jms-default-producer-session"/>
+            <endpoint>jms:queue:DEV.QUEUE.2</endpoint>
+          </producer>
+          <produce-exception-handler class="null-produce-exception-handler"/>
+          <unique-id>sick-beaver</unique-id>
+          <message-metrics-interceptor>
+            <unique-id>sick-beaver-MessageMetrics</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>12</timeslice-history-count>
+          </message-metrics-interceptor>
+          <in-flight-workflow-interceptor>
+            <unique-id>sick-beaver-InFlight</unique-id>
+          </in-flight-workflow-interceptor>
+        </standard-workflow>
+      </workflow-list>
+      <unique-id>Standard</unique-id>
+      <auto-start>false</auto-start>
+    </channel>
+    <channel>
+      <consume-connection class="null-connection">
+        <unique-id>sharp-archimedes</unique-id>
+      </consume-connection>
+      <produce-connection class="shared-connection">
+        <lookup-name>wmq</lookup-name>
+      </produce-connection>
+      <workflow-list>
+        <standard-workflow>
+          <consumer class="polling-trigger">
+            <unique-id>determined-thompson</unique-id>
+            <poller class="fixed-interval-poller">
+              <poll-interval>
+                <unit>SECONDS</unit>
+                <interval>10</interval>
+              </poll-interval>
+            </poller>
+            <message-provider class="static-polling-trigger-template">
+              <template><![CDATA[Some text content]]></template>
+            </message-provider>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>clever-ardinghelli</unique-id>
+            <services/>
+          </service-collection>
+          <producer class="jms-producer">
+            <unique-id>determined-jang</unique-id>
+            <acknowledge-mode>CLIENT_ACKNOWLEDGE</acknowledge-mode>
+            <message-translator class="text-message-translator">
+              <metadata-filter class="remove-all-metadata-filter"/>
+            </message-translator>
+            <delivery-mode>PERSISTENT</delivery-mode>
+            <session-factory class="jms-default-producer-session"/>
+            <endpoint>jms:queue:DEV.QUEUE.1</endpoint>
+          </producer>
+          <produce-exception-handler class="null-produce-exception-handler"/>
+          <unique-id>naughty-lewin</unique-id>
+          <message-metrics-interceptor>
+            <unique-id>naughty-lewin-MessageMetrics</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>12</timeslice-history-count>
+          </message-metrics-interceptor>
+          <in-flight-workflow-interceptor>
+            <unique-id>naughty-lewin-InFlight</unique-id>
+          </in-flight-workflow-interceptor>
+        </standard-workflow>
+      </workflow-list>
+      <unique-id>Loader</unique-id>
+    </channel>
+  </channel-list>
+  <message-error-digester class="standard-message-error-digester">
+    <unique-id>ErrorDigest</unique-id>
+    <digest-max-size>100</digest-max-size>
+  </message-error-digester>
+</adapter>
