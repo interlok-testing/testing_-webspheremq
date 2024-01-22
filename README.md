@@ -1,5 +1,8 @@
 # WebsphereMQ Testing
 
+[![license](https://img.shields.io/github/license/interlok-testing/testing_webspheremq.svg)](https://github.com/interlok-testing/testing_webspheremq/blob/develop/LICENSE)
+[![Actions Status](https://github.com/interlok-testing/testing_webspheremq/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/interlok-testing/testing_webspheremq/actions/workflows/gradle-build.yml)
+
 Project tests interlok-webspheremq features
 
 ## What it does
