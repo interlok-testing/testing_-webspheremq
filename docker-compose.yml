@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  solace:
+    image: 'docker.io/ibmcom/mq:latest'
+    ports:
+      - '1414:1414'
+      - '9157:9157'
+    environment:
+      - MQ_ADMIN_PASSWORD=admin
+      - MQ_APP_PASSWORD=admin
+      - MQ_QMGR_NAME=DevQueueManager
+      - MQ_DEV=true
+      - LICENSE=accept
+    shm_size: 1g

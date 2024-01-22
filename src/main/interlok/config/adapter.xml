@@ -6,8 +6,8 @@
     <connections>
       <jms-connection>
         <unique-id>wmq</unique-id>
-        <user-name>app</user-name>
-        <password>passw0rd</password>
+        <user-name>${username}</user-name>
+        <password>${password}</password>
         <vendor-implementation class="basic-mq-series-implementation">
           <ccsid>-1</ccsid>
           <transport-type>MQJMS_TP_CLIENT_MQ_TCPIP</transport-type>
@@ -71,7 +71,6 @@
             <session-factory class="jms-default-producer-session"/>
             <endpoint>jms:queue:DEV.QUEUE.2</endpoint>
           </producer>
-          <produce-exception-handler class="null-produce-exception-handler"/>
           <unique-id>solaceWorkflow</unique-id>
           <message-metrics-interceptor>
             <unique-id>awesome-lamarr-MessageMetrics</unique-id>
@@ -120,7 +119,6 @@
             <session-factory class="jms-default-producer-session"/>
             <endpoint>jms:queue:DEV.QUEUE.2</endpoint>
           </producer>
-          <produce-exception-handler class="null-produce-exception-handler"/>
           <unique-id>sick-beaver</unique-id>
           <message-metrics-interceptor>
             <unique-id>sick-beaver-MessageMetrics</unique-id>
@@ -156,7 +154,7 @@
               </poll-interval>
             </poller>
             <message-provider class="static-polling-trigger-template">
-              <template><![CDATA[Some text content]]></template>
+              <template>Some text content</template>
             </message-provider>
           </consumer>
           <service-collection class="service-list">
@@ -173,7 +171,6 @@
             <session-factory class="jms-default-producer-session"/>
             <endpoint>jms:queue:DEV.QUEUE.1</endpoint>
           </producer>
-          <produce-exception-handler class="null-produce-exception-handler"/>
           <unique-id>naughty-lewin</unique-id>
           <message-metrics-interceptor>
             <unique-id>naughty-lewin-MessageMetrics</unique-id>
