@@ -16,20 +16,11 @@ A second channel which is set to not start by default will provide the same mess
  
 ## Getting started
 
-Please note this project uses a licensed component; therefore you will need an Interlok license.
-Once obtained create a file "src/main/interlok/config/license.properties" that contains your license key.
+Before starting Interlok you need to create a Solace docker container with
+
+* `docker-compose up`
+
+Then start Interlok
 
 * `./gradlew clean build`
 * `(cd ./build/distribution && java -jar lib/interlok-boot.jar)`
-
-### docker
-
-You can run websphereMQ in docker.
-
-```
-local IMAGE="ibmcom/mq:latest"
-docker pull $IMAGE
-docker run -it --rm -p 127.0.0.1:1414:1414 -p 127.0.0.1:9157:9157 -e LICENSE=accept -e MQ_QMGR_NAME=DevQueueManager \
-   -e MQ_ADMIN_PASSWORD=admin -e MQ_APP_PASSWORD=admin \
-   -e MQ_DEV=true -h webspheremq.local "$IMAGE"
-```
