@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  solace:
+  webspheremq:
     image: 'docker.io/ibmcom/mq:latest'
     ports:
       - '1414:1414'
